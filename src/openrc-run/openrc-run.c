@@ -1204,9 +1204,6 @@ int main(int argc, char **argv)
 	}
 	*dir = '\0';
 
-	setenv("RC_SYSCONF_DIR", save, true);
-	free(path);
-
 	service = normalize_path(argv[1]);
 	applet = basename_c(service);
 
@@ -1269,6 +1266,9 @@ int main(int argc, char **argv)
 
 	setenv("EINFO_LOG", service, 1);
 	setenv("RC_SVCNAME", applet, 1);
+	setenv("RC_SYSCONF_DIR", save, true);
+	free(path);
+
 
 	/* Set an env var so that we always know our pid regardless of any
 	   subshells the init script may create so that our mark_service_*
